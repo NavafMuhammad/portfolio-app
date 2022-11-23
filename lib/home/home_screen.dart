@@ -18,11 +18,12 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: PopupMenuButton(
+          
           icon: const Icon(
             Icons.menu_rounded,
             size: 35,
           ),
-          color: kColorBlack,
+          color: Colors.transparent,
           itemBuilder: (context) {
             return [
               PopupMenuItem(
@@ -83,24 +84,24 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   child: ShaderMask(
-                    shaderCallback: (rect) {
-                      return const LinearGradient(
-                        begin: Alignment.center,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.black, Colors.transparent],
-                      ).createShader(
-                          Rect.fromLTRB(0, 0, rect.width, rect.height));
-                    },
-                    blendMode: BlendMode.dstIn,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 100, left: 80),
-                      child: Image.asset(
-                        'assets/profile_image.png',
-                        fit: BoxFit.contain,
-                        height: 300,
-                      ),
-                    ),
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    tileMode: TileMode.mirror,
+                    begin: Alignment.center,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(Rect.fromLTRB(rect.width, rect.width, 0, 0));
+                },
+                blendMode: BlendMode.dstIn,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0, left: 50),
+                  child: Image.asset(
+                    'assets/profileImage.png',
+                    fit: BoxFit.contain,
+                    height: 500,
                   ),
+                ),
+              ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -111,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         kwidth25,
                         Padding(
-                          padding: const EdgeInsets.only(left: 33),
+                          padding:  EdgeInsets.only(left: size.width * 0.08),
                           child: Row(
                             children: const [
                               Text(
@@ -280,32 +281,32 @@ class HomeScreen extends StatelessWidget {
                             context: context,
                             builder: (ctx) {
                               return AlertDialog(
-                                title: Text("Hire Nawaf"),
-                                content: Text("Choose Contact Option"),
+                                title: const Text("Hire Me"),
+                                content: const Text("Choose Contact Option"),
                                 actions: [
                                   GestureDetector(
                                       onTap: () async {
-                                        final email = "navafmuhd@gmail.com";
+                                        const email = "navafmuhd@gmail.com";
                                         final url = Uri.parse('mailto:$email');
                                         if (await canLaunchUrl(url)) {
                                           await launchUrl(url);
                                         }
                                       },
-                                      child: Text(
-                                        "CONTACT EMAIL",
-                                        style: TextStyle(
-                                            color: kColorBlack, fontSize: 15),
-                                      )),
+                                      child: const Text(
+                                       "CONTACT EMAIL",
+                                       style: TextStyle(
+                                           color: kColorBlack, fontSize: 15),
+                                          )),
                                   GestureDetector(
                                     onTap: () async {
-                                      final phoneNumber = "+919746995726";
+                                      const phoneNumber = "+919746995726";
                                       final url = Uri.parse('tel:$phoneNumber');
 
                                       if (await canLaunchUrl(url)) {
                                         await launchUrl(url);
                                       }
                                     },
-                                    child: Text("MAKE A PHONE CALL",
+                                    child: const Text("MAKE A PHONE CALL",
                                         style: TextStyle(
                                             color: kColorBlack, fontSize: 15)),
                                   ),

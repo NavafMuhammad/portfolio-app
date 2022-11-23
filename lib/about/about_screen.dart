@@ -29,18 +29,19 @@ class AboutScreen extends StatelessWidget {
               child: ShaderMask(
                 shaderCallback: (rect) {
                   return const LinearGradient(
+                    tileMode: TileMode.mirror,
                     begin: Alignment.center,
                     end: Alignment.bottomCenter,
                     colors: [Colors.black, Colors.transparent],
-                  ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+                  ).createShader(Rect.fromLTRB(rect.width, rect.width, 0, 0));
                 },
                 blendMode: BlendMode.dstIn,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 100, left: 80),
+                  padding: const EdgeInsets.only(top: 0, left: 50),
                   child: Image.asset(
-                    'assets/profile_image.png',
+                    'assets/profileImage.png',
                     fit: BoxFit.contain,
-                    height: 300,
+                    height: 500,
                   ),
                 ),
               ),
@@ -75,7 +76,8 @@ class AboutScreen extends StatelessWidget {
                   ),
                   kheight5,
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+
                     children: const [
                       Text(
                         'Mohammed',
@@ -104,32 +106,32 @@ class AboutScreen extends StatelessWidget {
                           context: context,
                           builder: (ctx) {
                             return AlertDialog(
-                              title: Text("Hire Nawaf"),
-                              content: Text("Choose Contact Option"),
+                              title: const Text("Hire Nawaf"),
+                              content: const Text("Choose Contact Option"),
                               actions: [
                                 GestureDetector(
                                     onTap: () async {
-                                      final email = "navafmuhd@gmail.com";
+                                      const email = "navafmuhd@gmail.com";
                                       final url = Uri.parse('mailto:$email');
                                       if (await canLaunchUrl(url)) {
                                         await launchUrl(url);
                                       }
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       "CONTACT EMAIL",
                                       style: TextStyle(
                                           color: kColorBlack, fontSize: 15),
                                     )),
                                 GestureDetector(
                                   onTap: () async {
-                                    final phoneNumber = "+919746995726";
+                                    const phoneNumber = "+919746995726";
                                     final url = Uri.parse('tel:$phoneNumber');
 
                                     if (await canLaunchUrl(url)) {
                                       await launchUrl(url);
                                     }
                                   },
-                                  child: Text("MAKE A PHONE CALL",
+                                  child: const Text("MAKE A PHONE CALL",
                                       style: TextStyle(
                                           color: kColorBlack, fontSize: 15)),
                                 ),
@@ -162,7 +164,10 @@ class AboutScreen extends StatelessWidget {
                             "https://www.instagram.com/i.navafmuhammad/");
 
                         if (await canLaunchUrl(url)) {
-                          await launchUrl(url);
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication,
+                              webViewConfiguration:
+                                  const WebViewConfiguration());
                         }
                       },
                       icon: const Icon(
@@ -175,7 +180,10 @@ class AboutScreen extends StatelessWidget {
                         final url = Uri.parse("https://twitter.com/_navafmuhd");
 
                         if (await canLaunchUrl(url)) {
-                          await launchUrl(url);
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication,
+                              webViewConfiguration:
+                                  const WebViewConfiguration());
                         }
                       },
                       icon: const Icon(
@@ -189,7 +197,10 @@ class AboutScreen extends StatelessWidget {
                             "https://www.linkedin.com/in/mohammed-nawaf-6a96491ba/");
 
                         if (await canLaunchUrl(url)) {
-                          await launchUrl(url);
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication,
+                              webViewConfiguration:
+                                  const WebViewConfiguration());
                         }
                       },
                       icon: const Icon(
@@ -203,7 +214,10 @@ class AboutScreen extends StatelessWidget {
                             Uri.parse("https://www.github.com/mohammed-nawaf");
 
                         if (await canLaunchUrl(url)) {
-                          await launchUrl(url);
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication,
+                              webViewConfiguration:
+                                  const WebViewConfiguration());
                         }
                       },
                       icon: const Icon(
@@ -217,7 +231,10 @@ class AboutScreen extends StatelessWidget {
                             "https://www.stackoverflow.com/users/14502828/mohammed-nawaf");
 
                         if (await canLaunchUrl(url)) {
-                          await launchUrl(url);
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication,
+                              webViewConfiguration:
+                                  const WebViewConfiguration());
                         }
                       },
                       icon: const Icon(

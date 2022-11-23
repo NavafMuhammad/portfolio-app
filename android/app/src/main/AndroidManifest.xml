@@ -25,8 +25,10 @@
   </intent>
 </queries>
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
    <application
-        android:label="career_portfolio"
+        android:label="Nawaf Career Folio"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
