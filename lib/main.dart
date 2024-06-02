@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       title: "Nawaf's Career Portfolio",
       theme: ThemeData(
         textTheme: const TextTheme(
-            bodyText1: TextStyle(color: kColorWhite),
-            bodyText2: TextStyle(color: kColorWhite)),
+            bodyLarge: TextStyle(color: kColorWhite),
+            bodyMedium: TextStyle(color: kColorWhite)),
         primarySwatch: Colors.blue,
       ),
       home: const HomeScreen(),

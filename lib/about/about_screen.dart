@@ -37,7 +37,7 @@ class AboutScreen extends StatelessWidget {
                 },
                 blendMode: BlendMode.dstIn,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 0, left: 50),
+                  padding: const EdgeInsets.only(top: 0, left: 15),
                   child: Image.asset(
                     'assets/profileImage.png',
                     fit: BoxFit.contain,
@@ -100,7 +100,7 @@ class AboutScreen extends StatelessWidget {
                     child: TextButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(kColorWhite)),
+                              WidgetStateProperty.all(kColorWhite)),
                       onPressed: () {
                         showDialog(
                           context: context,

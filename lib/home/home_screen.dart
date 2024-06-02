@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: PopupMenuButton(
-          
           icon: const Icon(
             Icons.menu_rounded,
             size: 35,
@@ -72,7 +71,7 @@ class HomeScreen extends StatelessWidget {
             // Enable snapping. This is true by default.
             snap: true,
             // Set custom snapping points.
-            snappings: [0.38, 0.7, 1.0],
+            snappings: [0.36, 0.7, 1.0],
             // Define to what the snappings relate to. In this case,
             // the total available space that the sheet can expand to.
             positioning: SnapPositioning.relativeToAvailableSpace,
@@ -84,24 +83,25 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   child: ShaderMask(
-                shaderCallback: (rect) {
-                  return const LinearGradient(
-                    tileMode: TileMode.mirror,
-                    begin: Alignment.center,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.black, Colors.transparent],
-                  ).createShader(Rect.fromLTRB(rect.width, rect.width, 0, 0));
-                },
-                blendMode: BlendMode.dstIn,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 0, left: 50),
-                  child: Image.asset(
-                    'assets/profileImage.png',
-                    fit: BoxFit.contain,
-                    height: 500,
+                    shaderCallback: (rect) {
+                      return const LinearGradient(
+                        tileMode: TileMode.mirror,
+                        begin: Alignment.center,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.black, Colors.transparent],
+                      ).createShader(
+                          Rect.fromLTRB(rect.width, rect.width, 0, 0));
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 0, left: 15),
+                      child: Image.asset(
+                        'assets/profileImage.png',
+                        fit: BoxFit.contain,
+                        height: 500,
+                      ),
+                    ),
                   ),
-                ),
-              ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         kwidth25,
                         Padding(
-                          padding:  EdgeInsets.only(left: size.width * 0.08),
+                          padding: EdgeInsets.only(left: size.width * 0.08),
                           child: Row(
                             children: const [
                               Text(
@@ -275,7 +275,7 @@ class HomeScreen extends StatelessWidget {
                       child: TextButton(
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(kCardColor)),
+                                WidgetStateProperty.all(kCardColor)),
                         onPressed: () {
                           showDialog(
                             context: context,
@@ -284,33 +284,46 @@ class HomeScreen extends StatelessWidget {
                                 title: const Text("Hire Me"),
                                 content: const Text("Choose Contact Option"),
                                 actions: [
-                                  GestureDetector(
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: GestureDetector(
+                                        onTap: () async {
+                                          const email = "navafmuhd@gmail.com";
+                                          final url =
+                                              Uri.parse('mailto:$email');
+                                          if (await canLaunchUrl(url)) {
+                                            await launchUrl(url);
+                                          }
+                                        },
+                                        child: const Text(
+                                          "CONTACT EMAIL",
+                                          style: TextStyle(
+                                              color: kColorBlack,
+                                              fontSize: 18),
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: GestureDetector(
                                       onTap: () async {
-                                        const email = "navafmuhd@gmail.com";
-                                        final url = Uri.parse('mailto:$email');
+                                        const phoneNumber = "+919746995726";
+                                        final url =
+                                            Uri.parse('tel:$phoneNumber');
+                                    
                                         if (await canLaunchUrl(url)) {
                                           await launchUrl(url);
                                         }
                                       },
-                                      child: const Text(
-                                       "CONTACT EMAIL",
-                                       style: TextStyle(
-                                           color: kColorBlack, fontSize: 15),
-                                          )),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      const phoneNumber = "+919746995726";
-                                      final url = Uri.parse('tel:$phoneNumber');
-
-                                      if (await canLaunchUrl(url)) {
-                                        await launchUrl(url);
-                                      }
-                                    },
-                                    child: const Text("MAKE A PHONE CALL",
-                                        style: TextStyle(
-                                            color: kColorBlack, fontSize: 15)),
+                                      child: const Text("MAKE A PHONE CALL",
+                                          style: TextStyle(
+                                              color: kColorBlack,
+                                              fontSize: 18)),
+                                    ),
                                   ),
-                                  kheight30,
+                                  kheight30
                                 ],
                               );
                             },

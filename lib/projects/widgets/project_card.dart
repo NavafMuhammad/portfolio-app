@@ -7,12 +7,12 @@ class ProjectCard extends StatelessWidget {
   final String description;
   final Function() onTap;
   const ProjectCard({
-    Key? key,
+    super.key,
     required this.lang,
     required this.projectName,
     required this.description,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,11 @@ class ProjectCard extends StatelessWidget {
                       const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 kheight10,
-                Text(
-                  description,
-                  style: const TextStyle(fontSize: 16, color: Colors.white70),
+                Expanded(
+                  child: Text(
+                    description,
+                    style: const TextStyle(fontSize: 16, color: Colors.white70),
+                  ),
                 ),
               ],
             ),
